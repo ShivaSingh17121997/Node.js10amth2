@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>this is form 2 </h1>
+
+    <form method="post" action="/addData">
+        <table border="1">
+            <tr>
+                <td>poets</td>
+                <td><input type="text" name="poets"></td>
+            </tr>
+            <tr>
+                <td>books</td>
+                <td><input type="text" name="books"></td>
+            </tr>
+            <tr>
+                <td>awards</td>
+                <td><input type="text" name="awards"></td>
+            </tr>
+            <tr>
+                <td>price</td>
+                <td><input type="text" name="price"></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="submit"></td>
+            </tr>
+        </table>
+        <br><br><br>
+
+
+
+        <table border="1">
+            <tr>
+                <th>poet</th>
+                <th>books</th>
+                <th>awards</th>
+                <th>price</th>
+                <th>Action</th>
+            </tr>
+
+            <% booksData.map((item)=>{ %>
+
+                <tr>
+                    <td>
+                        <%= item.poets %>
+                    </td>
+                    <td>
+                        <%= item.books %>
+                    </td>
+                    <td>
+                        <%= item.awards %>
+                    </td>
+                    <td>
+                        <%= item.price %>
+                    </td>
+                    <td>
+                        <button>
+                            <a href="/deleteData/<%=item._id %>"> Delete </a>
+                        </button>
+                    </td>
+
+
+                </tr>
+
+
+
+                <% }) %>
+        </table>
+
+    </form>
+
+</body>
+
+</html>
