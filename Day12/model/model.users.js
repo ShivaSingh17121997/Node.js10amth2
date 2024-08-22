@@ -6,7 +6,9 @@ const userSchema = new mongoose.Schema({
     poets: String,
     books: String,
     awards: String,
-    price: Number
+    price: Number,
+    image: String
+
 })
 
 

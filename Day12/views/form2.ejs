@@ -10,7 +10,7 @@
 <body>
     <h1>this is form 2 </h1>
 
-    <form method="post" action="/addData">
+    <form method="post" action="/addData" enctype="multipart/form-data">
         <table border="1">
             <tr>
                 <td>poets</td>
@@ -27,6 +27,10 @@
             <tr>
                 <td>price</td>
                 <td><input type="text" name="price"></td>
+            </tr>
+            <tr>
+                <td>Image</td>
+                <td><input type="file" name="image"></td>
             </tr>
             <tr>
                 <td></td>
@@ -60,6 +64,10 @@
                     </td>
                     <td>
                         <%= item.price %>
+                    </td>
+                    <td>
+                        <img width="100px" height="100px" src=<%=item.image %> alt="itmg ">
+
                     </td>
                     <td>
                         <button>
