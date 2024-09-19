@@ -19,6 +19,7 @@ const users = require("./model/model.users")
 const connection = require("./connection/db")
 const userRoutes = require("./contoller/routes.users")
 const fs = require("fs")
+const usrRegister = require("./model/model.register")
 
 
 const app = express();
@@ -87,6 +88,20 @@ app.post("/addData", imageUpload, async (req, res) => {
 })
 
 // delete
+
+
+app.post("/register", async (req, res) => {
+    console.log("register user")
+    const { name, email, password, gender } = req.body;
+    console.log(req.body)
+    const registeredData = new usrRegister({ name, email, password, gender })
+    await registeredData.save()
+    console.log(registeredData)
+
+})
+
+
+
 
 app.get("/deleteData/:id", async (req, res) => {
     // console.log("id is", req.query.id)
