@@ -1,17 +1,12 @@
+const mongoose = require("mongoose");
 
-// import mongoose
-const mongooose = require("mongoose");
-
-
-// step 3 created schema
-const studentSchema = mongooose.Schema({
-    name: String,
+const userSchema = mongoose.Schema({
+    username: String,
     email: String,
-    age: Number,
-    password: String
-})
+    password: String,
+   
+});
 
-// step 2 create model
-const studentModel = mongooose.model("dusara", studentSchema)
+const userModel = mongoose.model("users", userSchema);
 
-module.exports = studentModel;
+module.exports = userModel;

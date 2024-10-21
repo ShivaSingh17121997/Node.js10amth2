@@ -1,44 +1,21 @@
-// framework is predefined structure
-// MVC model
-// M = model  
-// V = view   // ejs
-// C = controller  //
-
-
 
 const express = require("express");
-
 const app = express();
 const ejs = require("ejs")
+const connection = require("./connection/db");
+const P_route = require("./routes/routes.products");
 
 const port = 9000;
 
+// middleware
+app.use(express.json());
 app.set("view engine", "ejs")
 
-app.get("/", (req, res) => {
-    res.render("index")
-})
 
-app.get("/contact", (req, res) => {
-    res.render("contacts")
-})
+app.use("/productRoute", P_route);
 
-app.get("/about", (req, res) => {
-    res.render("About")
-})
+app.listen(port, async () => {
+    await connection;
 
-
-
-app.listen(port, (error) => {
     console.log("server is running on port", port)
 })
-
-
-
-
-
-
-
-
-
-

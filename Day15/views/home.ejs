@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+//
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            
+
+        }
+
+        #parent {
+            border: 1px solid rgb(4, 129, 129);
+            padding: 10px;
+            margin: 10px;
+            background-color: aqua;
+        }
+
+        .flash-message{
+            color: green;
+            font-size: larger ;
+            font-family: sans-serif;
+            background-color: aquamarine;
+            
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+
+        <div>
+            <a href="/prodRoute/getData">home</a>
+            <a href="/prodRoute/form">form</a>
+            <a href="/authRoute/registerPage">signup</a>
+            <a href="/authRoute/loginPage">login</a>
+        </div>
+
+        <h1>Welcome to home page</h1>
+
+        <% if (infoMessage && infoMessage.length> 0) { %>
+            <div class="flash-message" > 
+                <!-- showing the data with the help of ejs -->
+                <%= infoMessage %> 
+            </div>
+            <% } %>
+
+                <div class="main-container">
+
+                    <% data.map((item)=>{ %>
+                        <div id="parent">
+                            <h2>
+                                Name: <%= item.productname %>
+                            </h2>
+                            <h5>
+                                Price: <%= item.price %>
+                            </h5>
+                            <button onclick="deleteFun('<%= item._id %>')">Delete</button>
+                            <a href="/prodRoute/editPage/<%=item._id %> ">Edit</a>
+                        </div>
+
+
+                        <% }) %>
+
+                </div>
+
+    </div>
+
+    <script>
+        function deleteFun(id) {
+            fetch(`/prodRoute/delete/${id}`, {
+                method: "DELETE"
+            }).then((res) => {
+                window.location.reload();
+                console.log(("data deleted Successfully"))
+            })
+                .catch(error => console.log(error))
+        }
+
+
+        function EditFun() {
+            fetch(`/prodRoute/editPage`, {
+                method: "POST",
+            })
+        }
+
+
+
+    </script>
+
+
+
+</body>
+
+</html>

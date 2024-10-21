@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            text-align: center;
+            background-color: rgb(170, 255, 255);
+        }
+
+        #form {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div>
+
+        <div>
+            <a href="/prodRoute/getData">home</a>
+            <a href="/prodRoute/form">form</a>
+            <a href="/authRoute/registerPage">signup</a>
+            <a href="/authRoute/loginPage">login</a>
+        </div>
+
+        <h1>Form</h1>
+        <form id="form" action="/addFormData" method="POST">
+            <input id="prodName" type="text" placeholder="Enter product name"> <br> <br>
+
+            <input id="price" type="number" placeholder="Enter Price"><br> <br>
+
+            <!-- <input type="number" placeholder="Enter rating"><br> <br>
+
+            <select name="" id="">
+                <option value="">Select Category</option>
+                <option value="cloths">Cloths</option>
+                <option value="electronics">Electronics</option>
+                <option value="shoes">Shoes</option>
+            </select> <br> <br>
+
+            <input type="number" placeholder="Enter the quantity"> <br> <br>
+
+            <input type="text" placeholder="Enter Description"><br> <br> -->
+
+            <button>Add</button>
+    </div>
+
+    </form>
+
+    <script>
+        // catching the form witn id
+        let form = document.querySelector("#form");
+        // add event listener to the form
+        form.addEventListener("submit", (e) => {
+            e.preventDefault();
+
+            let productname = document.querySelector("#prodName").value;
+            let price = document.querySelector("#price").value;
+
+            fetch("/prodRoute/formData", {
+                method: "POST",
+                body: JSON.stringify({ productname, price }),
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8"
+                }
+            }).then((res) => res.json())
+                .then((data) => console.log(data))
+                .catch((err) => console.log(err))
+
+            document.querySelector("#prodName").value = "";
+            document.querySelector("#price").value = "";
+        })
+    </script>
+
+</body>
+
+</html>

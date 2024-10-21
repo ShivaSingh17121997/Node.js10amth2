@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            text-align: center;
+            background-color: rgb(255, 236, 183);
+        }
+
+        #form {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div>
+
+        <div>
+            <a href="/prodRoute/getData">home</a>
+            <a href="/prodRoute/form">form</a>
+            <a href="/authRoute/registerPage">signup</a>
+            <a href="/authRoute/loginPage">login</a>
+        </div>
+
+        <h1>Edit Data</h1>
+        <form id="form" action="/prodRoute/edit/<%= data._id %>" method="POST">
+            <input type="hidden" id="productId" value="<%= data._id %>">
+
+            <input id="prodName" type="text" value="<%= data.productname %>" placeholder="Enter product name">
+            <br> <br>
+            <input id="price" type="number" value="<%= data.price %>" placeholder="Enter Price"><br> <br>
+
+            <!-- <input type="number" placeholder="Enter rating"><br> <br>
+
+            <select name="" id="">
+                <option value="">Select Category</option>
+                <option value="cloths">Cloths</option>
+                <option value="electronics">Electronics</option>
+                <option value="shoes">Shoes</option>
+            </select> <br> <br>
+
+            <input type="number" placeholder="Enter the quantity"> <br> <br>
+
+            <input type="text" placeholder="Enter Description"><br> <br> -->
+
+            <button>Update</button>
+    </div>
+
+    </form>
+
+    <script>
+        // catching the form witn id
+        let form = document.querySelector("#form");
+
+        form.addEventListener("submit", (e) => {
+            e.preventDefault();
+
+            let productId = document.querySelector("#productId").value;
+            let productname = document.querySelector("#prodName").value;
+            let price = document.querySelector("#price").value;
+
+            fetch(`/prodRoute/edit/${productId}`, {
+                method: "PATCH",
+                body: JSON.stringify({ productname, price }),
+                headers: {
+                    "Content-Type": "application/json; charset=UTF-8"
+                }
+            })
+                .then((res) => res.json())
+                .then((data) => console.log("Product updated successfully", data))
+                .catch((err) => console.log("Error updating product:", err));
+
+            document.querySelector("#prodName").value = "";
+            document.querySelector("#price").value = "";
+        });
+
+
+    </script>
+
+</body>
+
+</html>

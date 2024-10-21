@@ -76,3 +76,55 @@
 
 /////
 
+
+
+// let otp = Math.floor(Math.random()*10000);
+
+// console.log(otp)
+// let otp = Math.floor(100000 + Math.random() * 999999)
+
+
+// console.log(typeof otp)
+
+// console.log(typeof otp)
+
+
+// console.log(Date.now())
+
+
+let user = {
+  email: "ra@gmail.com",
+  password: 123,
+  otp: 234
+}
+
+
+//   let user1 = usermodel.findOne({email, otp, otpexpire})
+let newPass = 112333
+
+//   if(!user1){
+//     console.log("invalid otp of orp expire")
+//   }
+
+// user.password = newPass
+
+// console.log(user.password)
+
+
+//payments page ===> card input==>Add cardno. + cvvnu. + expiry date  ==>fetch()method:Post ==> payment (back compaire the data bank provide api ) ==> trasaction facility ==> msg:payment successful :  payment failed;
+
+// MM/YY  12/24
+let date = "12/24"
+let data = date.split("/")
+console.log(data)
+console.log(data[0])
+console.log(data[1])
+
+
+let str = "ramramram"
+
+let strsplit = str.split("") 
+console.log(strsplit)
+
+
+console.log("20"+"24")

@@ -10,13 +10,7 @@ const port = 8000;
 
 // middleware is functin
 
-const checkpost = (req, res, next) => {  // next()
-    console.log(req.query.age)
-    if (req.query.age >= 18) {
-        return next();
-    }
-    return res.redirect('/')
-}
+
 
 
 

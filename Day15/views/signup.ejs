@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <div>
+            <a href="/prodRoute/getData">home</a>
+            <a href="/prodRoute/form">form</a>
+            <a href="/authRoute/registerPage">signup</a>
+            <a href="/authRoute/loginPage">login</a>
+        </div>
+        
+        <h1>Signup</h1>
+        <form id="form">
+            <div>
+                <label>User Name</label>
+                <input id="name" type="text" placeholder="Enter your  name">
+            </div>
+
+            <div>
+                <label>Email</label>
+                <input id="email" type="text" placeholder="Enter your  Email">
+            </div>
+
+            <div>
+                <label>Password</label>
+                <input id="password" type="text" placeholder="Enter your  Password">
+            </div>
+
+            <div>
+                <button id="signup">Signup</button>
+            </div>
+        </form>
+
+    </div>
+
+    <script>
+
+        let form = document.querySelector("#form");
+
+        form.addEventListener("submit", (e) => {
+            e.preventDefault();
+
+            let username = document.querySelector("#name").value
+            let email = document.querySelector("#email").value
+            let password = document.querySelector("#password").value
+
+            fetch("/autRoute/register", {
+                method: "POST",
+                body: JSON.stringify({ username, email, password }),
+                headers: {
+                    "Content-Type": "application/json",
+                }
+            })
+                .then((res) => console.log("user add successfully"))
+                .catch((error) => console.log("something is wrong in api", error));
+
+            document.querySelector("#name").value = "";
+            document.querySelector("#email").value = "";
+            document.querySelector("#password").value = "";
+
+        })
+
+    </script>
+
+</body>
+
+</html>

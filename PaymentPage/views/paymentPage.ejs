@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            text-align: center;
+            background-color: rgb(170, 255, 255);
+        }
+
+        #form {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div>
+
+        <div>
+            <a href="/prodRoute/dashboard">home</a>
+            <a href="/prodRoute/payment">form</a>
+
+        </div>
+
+        <h1>Form</h1>
+        <form id="form">
+            <input id="prodName" type="text" placeholder="Enter card number"> <br> <br>
+
+            <input id="price" type="number" placeholder="Enter cvv no"><br> <br>
+
+            <input id="ExpiaryData" type="number" placeholder="Expiary data"><br> <br>
+
+            <button>Add</button>
+    </div>
+
+    </form>
+
+    <script>
+        // catching the form witn id
+        let form = document.querySelector("#form");
+        // add event listener to the form
+        form.addEventListener("submit", (e) => {
+            e.preventDefault();
+
+            let cardNo = document.querySelector("#prodName").value;
+            let cvvNo = document.querySelector("#price").value;
+            let exparydata = document.querySelector("#ExpiaryData").value;
+
+            fetch("route", {
+                method: "POST",
+                body: JSON.stringify({ cardNo, cvvNo, exparydata }),
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8"
+                }
+            }).then((res) => res.json())
+                .then((data) => console.log(data))
+                .catch((err) => console.log(err))
+
+            document.querySelector("#prodName").value = "";
+            document.querySelector("#price").value = "";
+            document.querySelector("#ExpiaryData").value = "";
+
+
+        })
+    </script>
+
+</body>
+
+</html>

@@ -1,27 +1,20 @@
-let welcomefile = require("./welcome")
+// server.js
+const express = require('express');
+const path = require('path');
+const app = express();
+require('dotenv').config(); // Load .env file
 
-// console.log(welcomefile)
+// serve static files (CSS, JS, images)
+app.use(express.static('public'));
 
-// welcomefile.hello();
+// serve the HTML file
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'index.html'));
+});
 
+const PORT = process.env.PORT || 3000;
 
-// name?
-
-// console.log(welcomefile.name)
-
-// let add = welcomefile.Add();
-// console.log(add);
-
-
-// let mul = welcomefile.Mul(4, 6);
-
-// console.log(mul)
-
-
-let learningNode = require('./learningNode')
-
-
-// console.log(learningNode.learning)
-
-console.log(learningNode.Modeule)
-
+// Start the server
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+});
